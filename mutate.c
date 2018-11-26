@@ -6,10 +6,8 @@ void mutate ( Individual * individual , double rate ) {
 	// srand(time(NULL));
 	int num_pixels = individual->image.width * individual->image.height;
 	int num_selects = (int) (rate/100*num_pixels);
-	int i = 0;
 	int max_color = individual->image.max_color;
-	for (i; i < num_pixels; i++) {
-		//srand(time(NULL));
+	for (int i = 0; i < num_selects; i++) {
 		int pos = rand() % num_pixels;
 		individual->image.data[pos].r = rand() % max_color;
 		individual->image.data[pos].b = rand() % max_color;

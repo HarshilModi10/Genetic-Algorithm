@@ -19,14 +19,14 @@
 int main(void) {
   PPM_IMAGE *image = read_ppm("me.ppm");
   int population_size = 24; // greater than 10 is seg fault ??
-  //int minute = 4000;
-  int num_generations = 50000;//minute*60; // 4000 iterations per minute
+  int num_generations = 1000;//minute*60; // 4000 iterations per minute
   double rate = 3e-2;
-  //char input_file = "";
   printf("\nFile new_out.ppm:\nSize: %dx%d, max color %d, pixels to mutate %d\n",
    image->width, image->height, image->max_color, (int)(rate/100*image->width*image->height));
+  
   PPM_IMAGE * new_image = evolve_image ( image , num_generations , population_size , rate );
-  write_ppm("new_out.ppm",new_image);
+  
+  write_ppm("alr_escher.ppm",new_image);
   free_image(image);
   free_image(new_image);
   exit(EXIT_SUCCESS);
