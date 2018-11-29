@@ -1,0 +1,46 @@
+for f in *ppm ; do convert -quality 100 $f `basename $f ppm`png; done 
+
+ffmpeg -framerate 10 -pattern_type glob -i '*.png' \
+  -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+
+rm *.ppm *.png
+
+// netpbm
+10 Frames per second:
+cd vids/ ;for f in *ppm ; do convert -quality 100 $f `basename $f ppm`png; done ; ffmpeg -framerate 10 -pattern_type glob -i '*.png' \
+  -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4;  mv out.mp4 ../final.mp4; cd ..;
+
+30 Frames per second:
+cd vids/ ;for f in *ppm ; do convert -quality 100 $f `basename $f ppm`png; done ; ffmpeg -framerate 30 -pattern_type glob -i '*.png' \
+  -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4;  mv out.mp4 ../final.mp4; cd ..;
+
+Clean up:
+rm *.ppm *.png;
+
+Semi Optomizations:
+real    6m32.183s
+user    6m20.813s
+sys     0m2.703s
+
+Using Pow:
+real    5m57.904s
+user    5m43.016s
+sys     0m3.297s
+
+Storing values and multiplying:
+real    5m44.784s
+user    5m35.563s
+sys     0m2.719s
+
+Results - Escher:
+Iteration: 50000 - P.Change (last): -5.65e-03%; P.Change (first): 76.809%; Fitness: 3.92492e+04
+Iteration: 500000 - P.Change (last): 0.00e+00%; P.Change (first): 68.400%; Fitness: 3.49525e+04
+
+Improvement Algorithm EDALR (Exponentialy Decaying Adaptive Learning Rate):
+// implement early stop or add if statement so that it drops to 2 or 1 maybe
+// @ 0.9999 hit goal in 25600 itr -> 28100(max): 76.171%
+// @ 0.99992 hit goal in 24180 itr -> 34700(max): 73.830%
+// @ 0.99993 hit goal in 23900 itr -> 40400(max): 71.824%
+// 3 w min -> 69.614
+// 2 w min -> 69.742
+
