@@ -1,33 +1,37 @@
 #include "a4.h"
-#include <stdio.h>
+#include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-// int main(void) {
-//   PPM_IMAGE *img = read_ppm("mcmaster.ppm");
-//   PPM_IMAGE *img2 = read_ppm("mcmaster.ppm");
-//   double distance = comp_distance(img->data, img2->data, img->width * img->height);
-//   int population_size = 50;
-//   //Individual* pop = generate_population(population_size, 100, 100, 255);
-//   Individual* pop = generate_population(population_size, img->width, img->height, img->max_color);
-//   printf("The distance between the 2 images are: %.3f.\n", distance);
-//   write_ppm("out.ppm",img);
-//   free_image(img);
-//   free_image(img2);
-//   free_population(pop, population_size);
-//   exit(EXIT_SUCCESS);
-// }
-int main(void) {
-  PPM_IMAGE *image = read_ppm("me.ppm");
-  int population_size = 24; // greater than 10 is seg fault ??
-  int num_generations = 1000;//minute*60; // 4000 iterations per minute
-  double rate = 3e-2;
-  printf("\nFile new_out.ppm:\nSize: %dx%d, max color %d, pixels to mutate %d\n",
-   image->width, image->height, image->max_color, (int)(rate/100*image->width*image->height));
+int main(int argc, char **argv) {
+  // Process input parameters
+  if (argc!=6)
+    {
+      printf("Usage ./evolve in_file out_file num_gen p_size rate\n");
+      return 1;
+    }
+  const char *input_file = argv[1];
+  const char *output_file = argv[2];
+
+  int num_generations = atoi(argv[3]);
+  int population_size = atoi(argv[4]);
+
+  double mutation_rate = atof(argv[5]);
   
-  PPM_IMAGE * new_image = evolve_image ( image , num_generations , population_size , rate );
-  
-  write_ppm("alr_escher.ppm",new_image);
-  free_image(image);
+  // Read image.
+  PPM_IMAGE *goal = read_ppm(input_file);
+  printf("\nFile %s:\n %dx%d, max color %d, pixels to mutate %d\n",
+	 input_file, goal->width, goal->height, goal->max_color, (int)(mutation_rate/100*goal->width*goal->height));
+
+  // Compute image
+  PPM_IMAGE *new_image =
+    evolve_image(goal, num_generations, population_size, mutation_rate);
+
+  // Write image
+  write_ppm(output_file, new_image);
+  // Free memory
+  free_image(goal);
   free_image(new_image);
-  exit(EXIT_SUCCESS);
+
+  return (0);
 }

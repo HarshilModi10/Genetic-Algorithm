@@ -24,8 +24,8 @@ PPM_IMAGE *read_ppm(const char *file_name) {
   fp = fopen(file_name, "r");
   if (fp == NULL)
     exit(EXIT_FAILURE);
-  char *file_contents;
-  size_t front;
+  //char *file_contents;
+  //size_t front;
 
   // variables for processing
   int counter = 0;                 // for processing the first 3 lines
@@ -56,8 +56,8 @@ PPM_IMAGE *read_ppm(const char *file_name) {
       else
         index++;
       if (index == 0)
-        i++; // printf("%d ", n);
-    }        // printf("\n");
+        i++; 
+    }        
   }
   free(line);
   fclose(fp);
@@ -74,7 +74,7 @@ PPM_IMAGE *read_ppm(const char *file_name) {
 }
 
 void write_ppm ( const char * file_name , const PPM_IMAGE * image ) {
-  int num, i, j;
+  int i, j;
 
   FILE *fp = fopen(file_name, "w");
 

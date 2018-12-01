@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 void mutate ( Individual * individual , double rate ) {
-	// srand(time(NULL));
 	int num_pixels = individual->image.width * individual->image.height;
 	int num_selects = (int) (rate/100*num_pixels);
 	int max_color = individual->image.max_color + 1;

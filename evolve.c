@@ -13,7 +13,7 @@ int compare (const void * a, const void * b)
 	return (*(Individual *)a).fitness - (*(Individual *)b).fitness;
 }
 PPM_IMAGE * evolve_image ( const PPM_IMAGE *image , int num_generations ,int population_size , double rate ) {
-	//srand(time(NULL));
+	srand(time(NULL));
 	Individual* population = generate_population(population_size, image->width, image->height, image->max_color);
 	comp_fitness_population ( image->data , population , population_size );
 	qsort (population, population_size, sizeof(Individual), compare);
@@ -21,9 +21,9 @@ PPM_IMAGE * evolve_image ( const PPM_IMAGE *image , int num_generations ,int pop
 	double original = first, temp;
 	int img_dim = image->width * image->height;
 
-	//FILE *data=fopen("data-alr-99992-wmin.txt", "a");
-	int count = 1, i;
-    char num[10], file[50];
+	
+	int i; // count = 1;
+    //char num[10], file[50];
     double adaptivelr = rate; // * here
     double const_rate = rate*(0.2);
 
@@ -38,23 +38,26 @@ PPM_IMAGE * evolve_image ( const PPM_IMAGE *image , int num_generations ,int pop
 		if ((i + 1)% 100 == 0) {
 			
 			printf("Iteration: %d - P.Change (last): %.2e%%; P.Change (first): %.3f%%; Fitness: %.5e; Num Pixels: %d\n", i+1, (temp-first)/first*100,100. + (temp-original)/original*100, temp, (int) ((adaptivelr/100)*55224));
-			//fprintf(data, "%.3f ", 100. + (temp-original)/original*100);
 			adaptivelr = pow(0.99993,(int) (i+1/100))*rate; // *here 
 			if (((int)((adaptivelr/100)*img_dim)) == 0) adaptivelr = const_rate;
 		}
 
 		first = population[0].fitness;
 
-		// if ((i + 1) % 50 == 0) {
-  //   		strcpy(file, "vids/img");
-  //   		sprintf(num, "%04d", count++);
-		// 	strcat(file, num);
-		// 	strcat(file,".ppm");
-		// 	write_ppm(file,&(population[0].image));
-		// }
+	    /////////////////////////////////////
+	    /////// Section to Create Video /////
+	    /////////////////////////////////////
+	    
+	    // if ((i + 1) % 100 == 0) {
+	    //   strcpy(file, "vids/img");
+	    //   sprintf(num, "%04d", count++);
+	    //   strcat(file, num);
+	    //   strcat(file, ".ppm");
+	    //   write_ppm(file, &(population[0].image));
+	    // }
 
 	}
-	//fclose(data);
+	
 	PPM_IMAGE * final = (PPM_IMAGE *)malloc(sizeof(PPM_IMAGE));
 	final->width = population[0].image.width;
 	final->height = population[0].image.height;

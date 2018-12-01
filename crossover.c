@@ -24,8 +24,7 @@ void recombine(Individual *parent1, Individual *parent2, Individual *child1, Ind
 
 void crossover(Individual *population, int population_size) {
   
-  int i;
-  for (i = 0; i < population_size / 2; i += 2)
+  for (int i = 0; i < population_size / 2; i += 2)
     // parent i and i+1 produce children population_size/2+i and
     // population_size/2+i+1.
     recombine(population + i, population + i + 1,

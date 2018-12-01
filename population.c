@@ -7,7 +7,7 @@ PIXEL *generate_random_image(int width, int height, int max_color){
 
     
     int population_size = width * height, i;
-    int reminder = population_size%2
+    int reminder = population_size%2;
 
     //Allocating memory for population
     PIXEL* image = (PIXEL *)malloc(population_size*sizeof(PIXEL));
@@ -33,7 +33,6 @@ PIXEL *generate_random_image(int width, int height, int max_color){
 }
 
 Individual *generate_population(int population_size, int width, int height, int max_color){
-  //srand(time(NULL));
 
   //Allocating memory for generation of population
   Individual* population = (Individual *)malloc(population_size*sizeof(Individual));
