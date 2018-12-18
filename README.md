@@ -19,6 +19,7 @@ Depicted below is the consturction of "M.C. Escher: In His Mind's Eye" by th Gen
 ![Constructed](results/500kescher.png)
 
 
+
 ## Application of Adaptive Learning Rate on Training Accuracy
 Graph depicting the efficacy of various adaptive learning rates on a given input image.
 ![Graphed Results](graphing_data/Escher-EDA-Progress-Plots.png)
