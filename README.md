@@ -11,6 +11,14 @@ Depicted below is the Construction of "Mona Lisa" by the Genetic Algorithm
 ### Gif of Image Recreation
 ![Demo Doccou alpha](https://j.gifs.com/oQDJnY.gif)
 
+## Escher Construction
+Depicted below is the consturction of "M.C. Escher: In His Mind's Eye" by th Genetic Algorithm
+
+### Original & Constructed Image
+![Original](results/Escher.jpg)
+![Constructed](results/500kEscher.png)
+
+
 ## Application of Adaptive Learning Rate on Training Accuracy
 Graph depicting the efficacy of various adaptive learning rates on a given input image.
 ![Graphed Results](graphing_data/Escher-EDA-Progress-Plots.png)
