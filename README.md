@@ -16,7 +16,7 @@ Depicted below is the consturction of "M.C. Escher: In His Mind's Eye" by th Gen
 
 ### Original & Constructed Image
 ![Original](results/Escher.jpg)
-![Constructed](results/500kEscher.png)
+![Constructed](results/500kescher.jpg)
 
 
 ## Application of Adaptive Learning Rate on Training Accuracy
