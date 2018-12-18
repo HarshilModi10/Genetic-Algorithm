@@ -6,7 +6,7 @@
 Depicted below is the recreation of the Famous Painting "Mona Lisa" by the Algorithm.
 
 ### Original & Recreated Image
-![Original](results/mona_lisa.jpg)
+![Original](results/monalisa.jpg)
 ![Recreated](results/mona_lisa_200k.png)
 ### Gif of Image Recreation
 ![Demo Doccou alpha](https://j.gifs.com/oQDJnY.gif)
